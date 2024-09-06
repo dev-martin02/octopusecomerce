@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useCartStore } from "../../store/cartStore";
-
+import PurchaseForm from "../form/purchaseForm";
 export default function Cart() {
   const { cartList } = useCartStore();
+  const [displayPurchaseForm, setDisplayPurchaseForm] = useState(false);
 
   const cartProducts = cartList.map(({ name, price, quantity }) => (
     <div className="border-2 border-solid border-black flex w-11/12 justify-center p-3">
@@ -21,7 +23,13 @@ export default function Cart() {
       ) : (
         <div className="flex flex-col justify-center items-center h-lvh">
           {cartProducts}
-          <button className="btn">Submit</button>
+          <button
+            className="btn"
+            onClick={() => setDisplayPurchaseForm(!displayPurchaseForm)}
+          >
+            Submit
+          </button>
+          {displayPurchaseForm && <PurchaseForm />}
         </div>
       )}
     </div>

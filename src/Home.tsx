@@ -1,5 +1,5 @@
 import { Products } from "./components/products/Products";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getAllProducts } from "./api/superbaseApi";
 import { useProductsStore } from "./store/productsStore";
 import { useCartStore } from "./store/cartStore";
@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 export default function Home() {
   const { cartList } = useCartStore();
   const { updateProductList } = useProductsStore();
-  const [cartSection, setCartSection] = useState(false);
 
   useEffect(() => {
     async function getProducts() {
@@ -32,8 +31,6 @@ export default function Home() {
           </Link>
         </nav>
       </header>
-
-      {cartSection && <Cart />}
       <section className="mt-4">
         <Products />
       </section>
