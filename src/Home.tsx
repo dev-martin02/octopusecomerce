@@ -21,15 +21,17 @@ export default function Home() {
 
   return (
     <>
-      <h1>Octopus e-commerce</h1>
-      <nav className="flex justify-around">
-        <p onClick={() => setCartSection(!cartSection)} className="btn">
-          {cartList.length}
-        </p>
-        <Link to={"login"} className="btn">
-          Login
-        </Link>
-      </nav>
+      <header className="flex justify-between px-2">
+        <h1>Octopus e-commerce</h1>
+        <nav className="flex w-36 justify-around">
+          <Link to={"cart"} className="btn">
+            {cartList.length}
+          </Link>
+          <Link to={"login"} className="btn">
+            Login
+          </Link>
+        </nav>
+      </header>
 
       {cartSection && <Cart />}
       <section className="mt-4">

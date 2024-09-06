@@ -36,6 +36,7 @@ export function Products() {
           <span>{price}</span>
           {cartList.find((product) => product.id === id) ? (
             <>
+              <p>Quantity</p>
               <button
                 className="btn btn-xs"
                 onClick={() => increaseProduct(id)}
