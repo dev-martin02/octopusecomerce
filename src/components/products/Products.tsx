@@ -3,7 +3,8 @@ import { useProductsStore } from "../../store/productsStore";
 
 export function Products() {
   const { productList } = useProductsStore();
-  const { addProductToCart, cartList, increaseProduct } = useCartStore();
+  const { addProductToCart, cartList, increaseProduct, decreaseProduct } =
+    useCartStore();
 
   const productToCart = async (productId: number) => {
     const product = productList.find(({ id }) => id === productId);
@@ -27,24 +28,31 @@ export function Products() {
 
   return productList.map(({ name, image_logo, price, id }) => (
     <>
-      <div className="w-44">
+      <div className="w-44 border-2 px-3 py-1">
         <figure>
           <img src={image_logo} alt="image of the product" />
         </figure>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <h3>{name}</h3>
-          <span>{price}</span>
+          <span>${price}.00</span>
           {cartList.find((product) => product.id === id) ? (
-            <>
-              <p>Quantity</p>
+            <div className="flex justify-between w-full">
               <button
                 className="btn btn-xs"
                 onClick={() => increaseProduct(id)}
               >
                 Increase
               </button>
-              <button className="btn btn-xs">Reduce</button>
-            </>
+              {cartList.map(({ quantity }) => (
+                <span>{quantity}</span>
+              ))}
+              <button
+                className="btn btn-xs"
+                onClick={() => decreaseProduct(id)}
+              >
+                Reduce
+              </button>
+            </div>
           ) : (
             <button className="btn btn-xs" onClick={() => productToCart(id)}>
               Add To cart

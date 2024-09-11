@@ -3,11 +3,8 @@ import { useEffect } from "react";
 import { getAllProducts } from "./api/superbaseApi";
 import { useProductsStore } from "./store/productsStore";
 import { useCartStore } from "./store/cartStore";
-import Cart from "./components/cart/Cart";
-import { Link } from "react-router-dom";
 
 export default function Home() {
-  const { cartList } = useCartStore();
   const { updateProductList } = useProductsStore();
 
   useEffect(() => {
@@ -20,17 +17,6 @@ export default function Home() {
 
   return (
     <>
-      <header className="flex justify-between px-2">
-        <h1>Octopus e-commerce</h1>
-        <nav className="flex w-36 justify-around">
-          <Link to={"cart"} className="btn">
-            {cartList.length}
-          </Link>
-          <Link to={"login"} className="btn">
-            Login
-          </Link>
-        </nav>
-      </header>
       <section className="mt-4">
         <Products />
       </section>
