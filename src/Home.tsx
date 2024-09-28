@@ -32,7 +32,7 @@ export default function Home() {
       </nav>
 
       {cartSection && <Cart />}
-      <section className="mt-4">
+      <section className="mt-4 flex flex-col items-center w-">
         <Products />
       </section>
     </>

@@ -25,32 +25,27 @@ export function Products() {
     alert("Product not found!!");
   };
 
-  return productList.map(({ name, image_logo, price, id }) => (
-    <>
-      <div className="w-44">
-        <figure>
-          <img src={image_logo} alt="image of the product" />
-        </figure>
-        <div className="flex flex-col">
-          <h3>{name}</h3>
-          <span>{price}</span>
-          {cartList.find((product) => product.id === id) ? (
-            <>
-              <button
-                className="btn btn-xs"
-                onClick={() => increaseProduct(id)}
-              >
-                Increase
-              </button>
-              <button className="btn btn-xs">Reduce</button>
-            </>
-          ) : (
-            <button className="btn btn-xs" onClick={() => productToCart(id)}>
-              Add To cart
+  return productList.map(({ name, image_logo, price, id, description }) => (
+    <div className=" border-black border-2 w-full flex gap-2">
+      <figure>
+        <img src={image_logo} alt="image of the product" />
+      </figure>
+      <div className="flex flex-col ">
+        <h3>{name}</h3>
+        <span>$ {price}</span>
+        {cartList.find((product) => product.id === id) ? (
+          <>
+            <button className="btn btn-xs" onClick={() => increaseProduct(id)}>
+              Increase
             </button>
-          )}
-        </div>
+            <button className="btn btn-xs">Reduce</button>
+          </>
+        ) : (
+          <button className="btn btn-xs" onClick={() => productToCart(id)}>
+            Add To cart
+          </button>
+        )}
       </div>
-    </>
+    </div>
   ));
 }
