@@ -11,10 +11,21 @@ export const useCartStore = create<CartStoreObj>((set) => ({
     })),
 
   // Increase the quantity of a product in the cart
-  increaseProduct: (productId: number) =>
+  increaseProduct: (productId) =>
     set((state) => ({
       cartList: state.cartList.map((item) =>
         item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
       ),
+    })),
+
+  decreaseProduct: (productId) =>
+    set((state) => ({
+      cartList: state.cartList
+        .map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0),
     })),
 }));

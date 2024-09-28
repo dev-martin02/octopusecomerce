@@ -1,15 +1,11 @@
 import { Products } from "./components/products/Products";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getAllProducts } from "./api/superbaseApi";
 import { useProductsStore } from "./store/productsStore";
 import { useCartStore } from "./store/cartStore";
-import Cart from "./components/cart/Cart";
-import { Link } from "react-router-dom";
 
 export default function Home() {
-  const { cartList } = useCartStore();
   const { updateProductList } = useProductsStore();
-  const [cartSection, setCartSection] = useState(false);
 
   useEffect(() => {
     async function getProducts() {
@@ -21,18 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <h1>Octopus e-commerce</h1>
-      <nav className="flex justify-around">
-        <p onClick={() => setCartSection(!cartSection)} className="btn">
-          {cartList.length}
-        </p>
-        <Link to={"login"} className="btn">
-          Login
-        </Link>
-      </nav>
-
-      {cartSection && <Cart />}
-      <section className="mt-4 flex flex-col items-center w-">
+      <section className="mt-4 grid gap-2 p-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
         <Products />
       </section>
     </>

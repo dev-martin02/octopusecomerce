@@ -7,6 +7,7 @@ export type CartStoreObj = {
   cartList: CartProductOjb[];
   addProductToCart: (product: CartProductOjb) => void;
   increaseProduct: (productId: number) => void;
+  decreaseProduct: (productId: number) => void;
 };
 
 type Product = {
