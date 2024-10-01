@@ -28,37 +28,43 @@ export function Products() {
   };
 
   return productList.map(({ name, image_logo, price, id }) => (
-    <div className="border-black rounded  flex gap-2 border-2 ">
+    <div className="border-gray-300 shadow-lg rounded-lg  flex gap-2 border-2 ">
       <figure className="w-40 ">
-        <img src={image_logo} alt="image of the product" className="h-40" />
+        <img
+          src={image_logo}
+          alt="image of the product"
+          className="h-40 object-contain"
+        />
       </figure>
-      <div className="flex flex-col gap-2 ">
-        <h3 className="text-lg font-extrabold font-serif">{name}</h3>
-        <span className="text-md font-semibold">${price}.00</span>
-
+      <div className="flex flex-col gap-2 p-4 flex-grow">
+        <h3 className="text-lg font-bold text-gray-800">{name}</h3>
+        <span className="text-md font-semibold text-green-600">
+          ${price.toFixed(2)}
+        </span>
         {cartList.find((product) => product.id === id) ? (
-          <div className="flex justify-around w-32  ">
+          <div className="flex items-center justify-start space-x-2">
             <button
-              className="btn btn-xs bg-red-700 text-white border-red-700 hover:  hover:border-red-800 hover:bg-red-800 rounded"
+              className="p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors duration-300"
               onClick={() => decreaseProduct(id)}
             >
-              <Minus size={13} color="white" />
+              <Minus size={16} />
             </button>
-            {cartList
-              .filter((product) => product.id === id)
-              .map(({ quantity }) => (
-                <div>{quantity}</div>
-              ))}
+            <span className="font-medium text-gray-700 w-8 text-center">
+              {cartList.find((product) => product.id === id)?.quantity || 0}
+            </span>
             <button
-              className="btn btn-xs bg-green-600 text-white border-green-600 hover:  hover:border-green-800 hover:bg-green-800 rounded"
+              className="p-1 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors duration-300"
               onClick={() => increaseProduct(id)}
             >
-              <Plus size={13} color="white" />
+              <Plus size={16} />
             </button>
           </div>
         ) : (
-          <button className="btn btn-xs" onClick={() => productToCart(id)}>
-            Add To cart
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-sm font-medium"
+            onClick={() => productToCart(id)}
+          >
+            Add to Cart
           </button>
         )}
       </div>

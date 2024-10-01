@@ -13,31 +13,48 @@ export function Login() {
   };
 
   return (
-    <>
-      <form className="flex flex-col gap-1" onSubmit={handleForm}>
-        <label className="input input-bordered flex items-center gap-2">
-          Email
+    <div className="min-h-screen flex items-center justify-center  p-4">
+      <form
+        className="w-full max-w-md space-y-6 bg-white p-8 rounded-xl shadow-lg  border-2 border-gray-200"
+        onSubmit={handleForm}
+      >
+        <h2 className="text-xl font-bold text-center text-gray-900">
+          Login to your account
+        </h2>
+
+        <div className="space-y-4">
           <input
             type="email"
-            placeholder="Please write your email"
             name="email"
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            placeholder="Email address"
           />
-        </label>
-        <label className="input input-bordered flex items-center gap-2">
-          Password:
           <input
-            type="text"
-            placeholder="Please write your email"
+            type="password"
             name="password"
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            placeholder="Password"
           />
-        </label>
-        <button type="submit" className="btn">
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+        >
           Login
         </button>
+
+        <div className="text-center">
+          <Link
+            to="/signup"
+            className="font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            Don't have an account? Sign Up
+          </Link>
+        </div>
       </form>
-      <Link to="signup" className="btn">
-        Sign Up
-      </Link>
-    </>
+    </div>
   );
 }
