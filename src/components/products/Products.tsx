@@ -29,11 +29,11 @@ export function Products() {
 
   return productList.map(({ name, image_logo, price, id }) => (
     <div className="border-gray-300 shadow-lg rounded-lg  flex gap-2 border-2 ">
-      <figure className="w-40 ">
+      <figure className="w-40">
         <img
           src={image_logo}
           alt="image of the product"
-          className="h-40 object-contain"
+          className="h-40 rounded-lg"
         />
       </figure>
       <div className="flex flex-col gap-2 p-4 flex-grow">
