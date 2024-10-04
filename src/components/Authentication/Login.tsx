@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { login } from "../../api/superbaseApi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Alert from "../Alert";
 import { UseAppStore } from "../../store/productsStore";
 
@@ -8,6 +8,7 @@ export function Login() {
   const { insertUser } = UseAppStore();
   const [loadingState, setLoadingState] = useState(false);
   const [loginErrMessage, setLoginErrMessage] = useState("");
+  const navigate = useNavigate();
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -19,8 +20,9 @@ export function Login() {
       .then((userArray) => {
         if (userArray) {
           if (userArray.length > 0) {
-            const user = userArray[0]; // Assuming the first element is the user object
+            const user = userArray[0];
             insertUser(user);
+            navigate("/");
           }
         }
       })
@@ -46,10 +48,10 @@ export function Login() {
   }, [loginErrMessage]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center  p-4">
+    <div className="flex items-center justify-center p-4 mt-52">
       {loginErrMessage && <Alert message={loginErrMessage} type="error" />}
       <form
-        className="w-full relative max-w-md space-y-6 bg-white p-8 rounded-xl shadow-lg  border-2 border-gray-200"
+        className="w-full relative max-w-md space-y-6 bg-white p-8 rounded-xl shadow-lg border-2 border-gray-200 "
         onSubmit={handleForm}
       >
         {loadingState && loadingDiv()}

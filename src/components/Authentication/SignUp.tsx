@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addNewUser } from "../../api/superbaseApi";
 import Alert from "../Alert";
+import { useEffect, useState } from "react";
 
 export function SignUp() {
+  const [alertMessage, setAlertMessage] = useState("");
+  const [addingUser, setAddingUser] = useState(false);
+  const [userPassword, setUserPassword] = useState("");
+  const navigate = useNavigate();
+
   const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -12,16 +18,46 @@ export function SignUp() {
     const name = formData.get("name") as string;
 
     try {
-      const data = await addNewUser(email, password, name);
-      console.log(data);
+      setAddingUser(true);
+      if (password !== userPassword) {
+        return setAlertMessage("Passwords do not match!");
+      }
+      await addNewUser(email, password, name);
+      navigate("/login");
     } catch (e) {
-      console.log(e);
+      if (e instanceof Error) {
+        if (e.message) {
+          setAlertMessage(e.message);
+        } else {
+          setAlertMessage("An unexpected error occurred.");
+        }
+      }
+    } finally {
+      setAddingUser(false);
     }
   };
 
+  useEffect(() => {
+    if (alertMessage) {
+      const timer = setTimeout(() => {
+        setAlertMessage("");
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [alertMessage]);
+
+  const loadingDiv = () => {
+    return (
+      <div className="absolute inset-0 flex items-center rounded-xl  backdrop-blur-sm justify-center">
+        <span className="loading loading-spinner loading-md "></span>
+      </div>
+    );
+  };
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg border-2 border-gray-200">
+      {alertMessage && <Alert message={alertMessage} type="error" />}
+      <div className=" relative w-full max-w-md bg-white p-8 rounded-xl shadow-lg border-2 border-gray-200">
+        {addingUser && loadingDiv()}
         <h2 className="text-xl font-bold text-center text-gray-900 mb-6">
           Create your account
         </h2>
@@ -66,6 +102,8 @@ export function SignUp() {
             <input
               type="password"
               name="confirmPassword"
+              onChange={(e) => setUserPassword(e.target.value)}
+              value={userPassword}
               placeholder="Confirm your password"
               className="input input-bordered w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
