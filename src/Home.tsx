@@ -1,11 +1,11 @@
 import { Products } from "./components/products/Products";
 import { useEffect } from "react";
 import { getAllProducts } from "./api/superbaseApi";
-import { useProductsStore } from "./store/productsStore";
+import { UseAppStore } from "./store/productsStore";
 // import { useCartStore } from "./store/cartStore";
 
 export default function Home() {
-  const { updateProductList } = useProductsStore();
+  const { updateProductList } = UseAppStore();
 
   useEffect(() => {
     async function getProducts() {

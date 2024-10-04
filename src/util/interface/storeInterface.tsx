@@ -1,6 +1,9 @@
 export type StoreObj = {
   productList: Product[];
   updateProductList: (list: Product[]) => void;
+  user: UserObj[];
+  insertUser: (obj: UserObj) => void;
+  logOutUser: () => void;
 };
 
 export type CartStoreObj = {
@@ -29,4 +32,13 @@ type CartProductOjb = {
   inventory_count: number;
   price: number;
   quantity: number;
+};
+
+type UserObj = {
+  id: string;
+  name: string;
+  email: string;
+  zipcode: number | null;
+  city: string | null;
+  street: string | null;
 };

@@ -1,9 +1,9 @@
 import { Minus, Plus } from "lucide-react";
 import { useCartStore } from "../../store/cartStore";
-import { useProductsStore } from "../../store/productsStore";
+import { UseAppStore } from "../../store/productsStore";
 
 export function Products() {
-  const { productList } = useProductsStore();
+  const { productList } = UseAppStore();
   const { addProductToCart, cartList, increaseProduct, decreaseProduct } =
     useCartStore();
 

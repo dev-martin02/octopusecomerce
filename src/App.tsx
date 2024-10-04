@@ -5,9 +5,13 @@ import { SignUp } from "./components/Authentication/SignUp";
 import Cart from "./components/cart/Cart";
 import { useCartStore } from "./store/cartStore";
 import { ShoppingCart, User } from "lucide-react";
+import { UseAppStore } from "./store/productsStore";
 
 function App() {
   const { cartList } = useCartStore();
+  const { user } = UseAppStore();
+
+  const getUser = user.map(({ name }) => name);
 
   return (
     <>
@@ -15,7 +19,7 @@ function App() {
         <h1 className="font-bold text-2xl">Octopus e-commerce</h1>
         <nav className="flex gap-2 mr-2">
           <Link to={"login"} className="btn min-h-1 p-2 max-h-10">
-            <User />
+            {user.length !== 0 ? getUser : <User />}
           </Link>
           <Link to={"cart"} className=" btn indicator min-h-1 p-2 max-h-10">
             {cartList.length > 0 ? (

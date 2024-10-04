@@ -1,23 +1,58 @@
+import { useEffect, useState } from "react";
 import { login } from "../../api/superbaseApi";
 import { Link } from "react-router-dom";
+import Alert from "../Alert";
+import { UseAppStore } from "../../store/productsStore";
 
 export function Login() {
+  const { insertUser } = UseAppStore();
+  const [loadingState, setLoadingState] = useState(false);
+  const [loginErrMessage, setLoginErrMessage] = useState("");
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-
-    login(email, password).then((user) => console.log(user));
+    setLoadingState(true);
+    login(email, password)
+      .then((userArray) => {
+        if (userArray) {
+          if (userArray.length > 0) {
+            const user = userArray[0]; // Assuming the first element is the user object
+            insertUser(user);
+          }
+        }
+      })
+      .catch((e) => setLoginErrMessage(e.message))
+      .finally(() => setLoadingState(false));
   };
+
+  const loadingDiv = () => {
+    return (
+      <div className="absolute inset-0 flex items-center rounded-xl  backdrop-blur-sm justify-center">
+        <span className="loading loading-spinner loading-md "></span>
+      </div>
+    );
+  };
+
+  useEffect(() => {
+    if (loginErrMessage) {
+      const timer = setTimeout(() => {
+        setLoginErrMessage("");
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [loginErrMessage]);
 
   return (
     <div className="min-h-screen flex items-center justify-center  p-4">
+      {loginErrMessage && <Alert message={loginErrMessage} type="error" />}
       <form
-        className="w-full max-w-md space-y-6 bg-white p-8 rounded-xl shadow-lg  border-2 border-gray-200"
+        className="w-full relative max-w-md space-y-6 bg-white p-8 rounded-xl shadow-lg  border-2 border-gray-200"
         onSubmit={handleForm}
       >
+        {loadingState && loadingDiv()}
         <h2 className="text-xl font-bold text-center text-gray-900">
           Login to your account
         </h2>
