@@ -6,6 +6,7 @@ import Cart from "./components/cart/Cart";
 import { useCartStore } from "./store/cartStore";
 import { ShoppingCart, User } from "lucide-react";
 import { UseAppStore } from "./store/productsStore";
+import Products from "./pages/Product";
 
 function App() {
   const { cartList } = useCartStore();
@@ -38,6 +39,7 @@ function App() {
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="cart" element={<Cart />} />
       </Routes>
