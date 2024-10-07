@@ -12,11 +12,11 @@ export default function Home() {
   }) => (
     <div>
       <div className="bg-purple-200 w-full h-40"></div>
-      <p className="font-bold text-xl">{name}</p>
+      <p className="font-bold text-xl text-white">{name}</p>
       <div className="flex  justify-between px-1">
-        <p className="font-semibold text-lg">${price}</p>
-        <span className="flex text-md items-center">
-          <Star size={18} /> {reviewRate}
+        <p className="font-semibold text-lg text-white">${price}</p>
+        <span className="flex text-md text-white items-center">
+          <Star size={18} color="white" /> {reviewRate}
         </span>
       </div>
     </div>
@@ -29,30 +29,28 @@ export default function Home() {
     name: string;
     section: string;
   }) => (
-    <div>
-      <div>
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold">{name}</h2>
-          <button className="btn">View All</button>
-        </div>
-        {section === "women" ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-2 gap-4">
-            <div className="bg-green-800 w-40 sm:w-52 rounded-lg h-full sm:row-span-2"></div>
-            <div className="bg-red-200 w-40 sm:w-52 rounded-lg h-40"></div>
-            <div className="bg-red-400 w-40 sm:w-52 rounded-lg h-40"></div>
-            <div className="bg-red-600 w-40 sm:w-52 rounded-lg h-40"></div>
-            <div className="bg-red-800 w-40 sm:w-52 rounded-lg h-40 hidden sm:grid "></div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-2 gap-4">
-            <div className="bg-red-200 w-40 sm:w-52 rounded-lg h-40"></div>
-            <div className="bg-red-400 w-40 sm:w-52 rounded-lg h-40"></div>
-            <div className="bg-green-800 w-40 sm:w-52 rounded-lg h-full sm:row-span-2"></div>
-            <div className="bg-red-600 w-40 sm:w-52 rounded-lg h-40"></div>
-            <div className="bg-red-800 w-40 sm:w-52 rounded-lg h-40 hidden sm:grid "></div>
-          </div>
-        )}
+    <div className="flex flex-col gap-4">
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl font-bold">{name}</h2>
+        <button className="btn">View All</button>
       </div>
+      {section === "women" ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-2 gap-4">
+          <div className="bg-green-800 w-40 sm:w-52 rounded-lg h-full sm:row-span-2"></div>
+          <div className="bg-red-200 w-40 sm:w-52 rounded-lg h-40"></div>
+          <div className="bg-red-400 w-40 sm:w-52 rounded-lg h-40"></div>
+          <div className="bg-red-600 w-40 sm:w-52 rounded-lg h-40"></div>
+          <div className="bg-red-800 w-40 sm:w-52 rounded-lg h-40 hidden sm:grid "></div>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-2 gap-4">
+          <div className="bg-red-200 w-40 sm:w-52 rounded-lg h-40"></div>
+          <div className="bg-red-400 w-40 sm:w-52 rounded-lg h-40"></div>
+          <div className="bg-green-800 w-40 sm:w-52 rounded-lg h-full sm:row-span-2"></div>
+          <div className="bg-red-600 w-40 sm:w-52 rounded-lg h-40"></div>
+          <div className="bg-red-800 w-40 sm:w-52 rounded-lg h-40 hidden sm:grid "></div>
+        </div>
+      )}
     </div>
   );
 
@@ -60,16 +58,10 @@ export default function Home() {
     <>
       <div className="w-full bg-yellow-950" style={{ height: "600px" }}></div>
 
-      {/* Categories */}
-      <div className="flex">
-        <div className="w-1/2 h-36 bg-yellow-500"></div>
-        <div className="w-1/2 h-36 bg-yellow-700"></div>
-      </div>
-
       <main className="p-3 flex flex-col gap-28 max-w-screen-2xl ">
         {/* Best Sellers */}
         <section className="w-full">
-          <h2 className="text-3xl font-bold">Best Sellers</h2>
+          <h2 className="text-3xl font-bold text-white">Best Sellers</h2>
           <main className="mt-6 grid grid-cols-2 gap-4 md:flex md:justify-center">
             <BestSellerCard name={"Perfum 1"} price={20} reviewRate={4} />
             <BestSellerCard name={"Perfum 2"} price={40} reviewRate={5} />

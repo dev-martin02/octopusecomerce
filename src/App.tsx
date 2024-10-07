@@ -15,7 +15,7 @@ function App() {
   const getUser = user.map(({ name }) => name);
 
   return (
-    <>
+    <div className="bg-custom-gradient ">
       <header className="navbar  justify-between px-2">
         <h1 className="font-bold text-2xl">Octopus e-commerce</h1>
         <nav className="flex gap-2 mr-2">
@@ -43,7 +43,7 @@ function App() {
         <Route path="signup" element={<SignUp />} />
         <Route path="cart" element={<Cart />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
