@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="bg-custom-gradient ">
       <header className="navbar  justify-between px-2">
-        <h1 className="font-bold text-2xl">Octopus e-commerce</h1>
+        <h1 className="font-bold text-2xl text-white">روح العطر</h1>
         <nav className="flex gap-2 mr-2">
           <Link to={"login"} className="btn min-h-1 p-2 max-h-10">
             {user.length !== 0 ? getUser : <User />}
