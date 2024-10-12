@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ProductCard } from "../components/products/Products";
+import { AllProducts } from "../components/products/Products";
 import { getAllProducts } from "../api/superbaseApi";
 import { UseAppStore } from "../store/productsStore";
 
@@ -36,7 +36,7 @@ export default function Products() {
             <LoadingProducts key={index} />
           ))
         ) : (
-          <ProductCard />
+          <AllProducts />
         )}
       </section>
     </>

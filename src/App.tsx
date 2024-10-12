@@ -7,6 +7,7 @@ import { useCartStore } from "./store/cartStore";
 import { ShoppingCart, User } from "lucide-react";
 import { UseAppStore } from "./store/productsStore";
 import Products from "./pages/Product";
+import ProductCard from "./components/products/ProductCard";
 
 function App() {
   const { cartList } = useCartStore();
@@ -15,8 +16,8 @@ function App() {
   const getUser = user.map(({ name }) => name);
 
   return (
-    <div className="bg-custom-gradient ">
-      <header className="navbar  justify-between px-2">
+    <div className="bg-custom-peach min-h-screen">
+      <header className="navbar  justify-between px-2 bg-purple-900">
         <h1 className="font-bold text-2xl text-white">روح العطر</h1>
         <nav className="flex gap-2 mr-2">
           <Link to={"login"} className="btn min-h-1 p-2 max-h-10">
@@ -42,6 +43,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="/product" element={<ProductCard />} />
       </Routes>
     </div>
   );
