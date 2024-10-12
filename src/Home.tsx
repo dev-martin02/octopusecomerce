@@ -17,14 +17,18 @@ export default function Home() {
     reviewRate: number;
     imgUrl: string;
   }) => (
-    <div>
-      <img src={imgUrl} className=" w-full h-52 md:h-60"></img>
-      <p className="font-bold text-xl text-white">{name}</p>
-      <div className="flex justify-between px-1">
-        <p className="font-semibold text-lg text-white">${price}</p>
-        <span className="flex text-md text-white items-center">
-          <Star size={18} color="white" /> {reviewRate}
-        </span>
+    <div className="border rounded-md p-1">
+      <div className="w-1/2 max-w-max">
+        <img src={imgUrl} className="max-w-max h-48 rounded-md md:h-60"></img>
+      </div>
+      <div className="mt-1">
+        <p className="font-bold text-xl text-white">{name}</p>
+        <div className="flex gap-5 px-1">
+          <p className="font-semibold text-lg text-white">${price}</p>
+          <span className="flex text-md text-white items-center">
+            <Star size={18} color="white" /> {reviewRate}
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -43,19 +47,41 @@ export default function Home() {
       </div>
       {section === "women" ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-2 gap-4">
-          <div className="bg-green-800 w-40 sm:w-52 rounded-lg h-full sm:row-span-2"></div>
-          <div className="bg-red-200 w-40 sm:w-52 rounded-lg h-40"></div>
-          <div className="bg-red-400 w-40 sm:w-52 rounded-lg h-40"></div>
-          <div className="bg-red-600 w-40 sm:w-52 rounded-lg h-40"></div>
-          <div className="bg-red-800 w-40 sm:w-52 rounded-lg h-40 hidden sm:grid "></div>
+          <div className="rounded-lg h-full ">
+            <img src={image1} className="sm:w-52 " />
+            <button className="btn">Add to cart</button>
+          </div>
+          <div className="rounded-lg h-full ">
+            <img src={image2} className="sm:w-52 " />
+            <button className="btn">Add to cart</button>
+          </div>
+          <div className="rounded-lg h-full ">
+            <img src={image3} className="sm:w-52 " />
+            <button className="btn">Add to cart</button>
+          </div>
+          <div className="rounded-lg h-full ">
+            <img src={image4} className="sm:w-52 " />
+            <button className="btn">Add to cart</button>
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-2 gap-4">
-          <div className="bg-red-200 w-40 sm:w-52 rounded-lg h-40"></div>
-          <div className="bg-red-400 w-40 sm:w-52 rounded-lg h-40"></div>
-          <div className="bg-green-800 w-40 sm:w-52 rounded-lg h-full sm:row-span-2"></div>
-          <div className="bg-red-600 w-40 sm:w-52 rounded-lg h-40"></div>
-          <div className="bg-red-800 w-40 sm:w-52 rounded-lg h-40 hidden sm:grid "></div>
+          <div className="rounded-lg h-full ">
+            <img src={image1} className="sm:w-52 " />
+            <button className="btn">Add to cart</button>
+          </div>
+          <div className="rounded-lg h-full ">
+            <img src={image2} className="sm:w-52 " />
+            <button className="btn">Add to cart</button>
+          </div>
+          <div className="rounded-lg h-full ">
+            <img src={image3} className="sm:w-52 " />
+            <button className="btn">Add to cart</button>
+          </div>
+          <div className="rounded-lg h-full ">
+            <img src={image4} className="sm:w-52 " />
+            <button className="btn">Add to cart</button>
+          </div>
         </div>
       )}
     </div>
@@ -114,14 +140,15 @@ export default function Home() {
         </section>
 
         {/* Newest Arrival */}
-        <div className="flex flex-col gap-10 w-full md:flex-row  ">
-          <div>
-            <img src={image3} className=" w-full"></img>
+        <h2>Newest Arrival</h2>
+        <div className="flex flex-col gap-10 w-full border rounded-lg md:flex-row  ">
+          <div className=" max-w-max">
+            <img src={image3} className="w-full rounded-lg max-w-max ob"></img>
           </div>
 
-          <div className="flex justify-between flex-col w-full gap-5">
+          <div className="flex justify-between flex-col w-full gap-5 p-1">
             <div className="max-w-lg">
-              <h3 className="font-bold text-3xl">Random Name</h3>
+              <h3 className="font-bold text-3xl text-white">Random Name</h3>
               <p className="mt-1 text-white font-semibold text-xl">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Dolorem, libero. Nulla quas suscipit cum fuga officia et, ipsam
