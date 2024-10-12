@@ -1,32 +1,41 @@
 import { useParams } from "react-router-dom";
+import { UseAppStore } from "../../store/productsStore";
+import { Heart } from "lucide-react";
+import { AddToCart } from "../buttons/AddToCart";
 
 export default function ProductCard() {
-  const productContent = useParams();
+  const { productID } = useParams();
+  const { productList } = UseAppStore();
 
-  return (
-    <section>
-      <figure>
-        <div className="h-50 w-50 bg-indigo-400"></div>
+  const product = productList.filter(({ id }) => id === Number(productID));
+  return product.map(({ image_logo, name, description, id, brand, price }) => (
+    <section className="flex flex-col relative h-screen">
+      <figure className="w-full ">
+        <img
+          src={image_logo}
+          alt="image of the product"
+          className="h-full w-full rounded-lg"
+        />
       </figure>
-      <main>
+      <Heart className="absolute left-3 top-4" size={25} />
+      <main className="w-full flex flex-col gap-5 p-3">
         <header>
-          <p>Valentino</p>
-          <p>$60</p>
+          <p className="font-thin">{brand}</p>
+          <p className="font-bold text-2xl">{name}</p>
         </header>
-        <p>
-          Valentino Uomo Born In Roma Coral Fantasy by Valentino is a Woody
-          Aromatic fragrance for men. This is a new fragrance. Valentino Uomo
-          Born In Roma Coral Fantasy was launched in 2022. Valentino Uomo Born
-          In Roma Coral Fantasy was created by Nicolas Beaulieu and
-          Jean-Christophe Hérault. Top notes are Red Apple, Cardamom and
-          Calabrian bergamot; middle notes are Lavender, Bourbon Geranium and
-          Clary Sage; base notes are Tobacco Leaf, Patchouli and Haitian
-          Vetiver.
+        <p className=" text-yellow-600 text-2xl font-semibold">
+          ${price.toFixed(2)}
         </p>
         <div>
-          <button>Add To card</button>
+          <button className="ring-purple-900 p-1 rounded-md bg-purple-900 w-20 text-white">
+            1oz
+          </button>
+        </div>
+        <p className="w-full">{description}</p>
+        <div>
+          <AddToCart id={id} />
         </div>
       </main>
     </section>
-  );
+  ));
 }

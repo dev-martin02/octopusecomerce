@@ -1,6 +1,7 @@
 import { Heart } from "lucide-react";
 import { UseAppStore } from "../../store/productsStore";
 import { AddToCart } from "../buttons/AddToCart";
+import { Link } from "react-router-dom";
 
 export function AllProducts() {
   const { productList } = UseAppStore();
@@ -27,9 +28,12 @@ export function AllProducts() {
         </span>
         <div className="flex gap-4">
           <AddToCart id={id} />
-          <button className="px-4 py-2 bg-purple-900 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-sm font-medium">
+          <Link
+            to={`${id}`}
+            className="px-4 py-2 bg-purple-900 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-sm font-medium"
+          >
             View Product
-          </button>
+          </Link>
         </div>
       </main>
     </div>

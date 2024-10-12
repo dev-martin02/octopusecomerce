@@ -43,7 +43,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="cart" element={<Cart />} />
-        <Route path="/product" element={<ProductCard />} />
+        <Route path="products/:productID" element={<ProductCard />} />
       </Routes>
     </div>
   );
