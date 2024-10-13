@@ -16,8 +16,8 @@ function App() {
   const getUser = user.map(({ name }) => name);
 
   return (
-    <div className="bg-custom-peach min-h-screen">
-      <header className="navbar  justify-between px-2 bg-purple-900">
+    <div className="bg-custom-peach min-h-screen sm:flex sm:flex-col sm:items-center">
+      <header className="navbar justify-between px-4 sm:rounded-lg bg-purple-900 sm:w-11/12 sm:mt-2  ">
         <h1 className="font-bold text-2xl text-white">روح العطر</h1>
         <nav className="flex gap-2 mr-2">
           <Link to={"login"} className="btn min-h-1 p-2 max-h-10">

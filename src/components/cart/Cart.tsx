@@ -55,14 +55,16 @@ export default function Cart() {
         <div className="flex items-center mb-2">
           <DollarSign className="text-gray-600 mr-2" />
           <p className="text-lg font-semibold">
-            Tax (7%): <span className="text-gray-600">${taxCost}</span>
+            Tax (7%):{" "}
+            <span className="text-gray-600">${taxCost.toFixed(2)}</span>
           </p>
         </div>
 
         <div className="flex items-center mb-2">
           <Truck className="text-gray-600 mr-2" />
           <p className="text-lg font-semibold">
-            Shipping: <span className="text-gray-600">${SHIPPING_COST}</span>
+            Shipping:{" "}
+            <span className="text-gray-600">${SHIPPING_COST.toFixed(2)}</span>
           </p>
         </div>
 
@@ -71,7 +73,8 @@ export default function Cart() {
         <div className="flex items-center">
           <CheckCircle className="text-blue-600 mr-2" />
           <p className="text-xl font-bold">
-            Total: <span className="text-blue-600">${totalCost}</span>
+            Total:{" "}
+            <span className="text-blue-600">${totalCost.toFixed(2)}</span>
           </p>
         </div>
       </div>
@@ -90,7 +93,7 @@ export default function Cart() {
           <div className="p-4 border rounded-lg shadow-lg bg-white flex flex-col gap-5 w-11/12 sm:w-60">
             {totalCost()}
             <button
-              className="btn  btn-primary"
+              className="btn btn-primary text-white"
               onClick={() => setDisplayPurchaseForm(!displayPurchaseForm)}
             >
               Proceed to purchase

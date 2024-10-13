@@ -9,16 +9,16 @@ export default function ProductCard() {
 
   const product = productList.filter(({ id }) => id === Number(productID));
   return product.map(({ image_logo, name, description, id, brand, price }) => (
-    <section className="flex flex-col relative h-screen">
-      <figure className="w-full ">
+    <section className="flex flex-col justify-center mt-2 sm:mt-5 sm:flex-row h-screen">
+      <figure className="w-full h-full sm:max-h-96 sm:max-w-96 flex justify-center relative ">
+        <Heart className="absolute left-3 top-4" size={25} />
         <img
           src={image_logo}
           alt="image of the product"
-          className="h-full w-full rounded-lg"
+          className="h-full  object-cover rounded-lg"
         />
       </figure>
-      <Heart className="absolute left-3 top-4" size={25} />
-      <main className="w-full flex flex-col gap-5 p-3">
+      <main className="w-full flex max-h-96 max-w-screen-lg flex-col gap-3 p-3">
         <header>
           <p className="font-thin">{brand}</p>
           <p className="font-bold text-2xl">{name}</p>

@@ -47,7 +47,7 @@ export function AddToCart({ id }: { id: number }) {
     </div>
   ) : (
     <button
-      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-sm font-medium"
+      className="p-2 text-xs max-h-10 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors duration-300 font-medium"
       onClick={() => productToCart(id)}
     >
       Add to Cart

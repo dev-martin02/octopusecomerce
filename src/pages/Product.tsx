@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AllProducts } from "../components/products/Products";
+import { AllProducts } from "../components/products/AllProducts";
 import { getAllProducts } from "../api/superbaseApi";
 import { UseAppStore } from "../store/productsStore";
 
@@ -30,7 +30,7 @@ export default function Products() {
 
   return (
     <>
-      <section className="mt-4 grid gap-2 p-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+      <section className="mt-4 grid gap-2 p-2 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
         {fetchingProducts ? (
           Array.from({ length: 10 }).map((_, index) => (
             <LoadingProducts key={index} />
