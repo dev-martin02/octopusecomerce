@@ -31,7 +31,7 @@ export function AllProducts() {
           <AddToCart id={id} />
           <Link
             to={`${id}`}
-            className="p-2 max-h-10 bg-purple-900 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 text-xs font-medium hidden sm:inline-flex justify-center items-center"
+            className="p-2 max-h-10 bg-purple-900 text-white rounded-md hover:bg-purple-700 transition-colors duration-300 text-xs font-medium hidden sm:inline-flex justify-center items-center"
           >
             View Product
           </Link>

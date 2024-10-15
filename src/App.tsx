@@ -8,6 +8,7 @@ import { ShoppingCart, User } from "lucide-react";
 import { UseAppStore } from "./store/productsStore";
 import Products from "./pages/Product";
 import ProductCard from "./components/products/ProductCard";
+import UserAccount from "./components/user/UserAccount";
 
 function App() {
   const { cartList } = useCartStore();
@@ -20,9 +21,15 @@ function App() {
       <header className="navbar justify-between px-4 sm:rounded-lg bg-purple-900 sm:w-11/12 sm:mt-2  ">
         <h1 className="font-bold text-2xl text-white">روح العطر</h1>
         <nav className="flex gap-2 mr-2">
-          <Link to={"login"} className="btn min-h-1 p-2 max-h-10">
-            {user.length !== 0 ? getUser : <User />}
-          </Link>
+          {user.length !== 0 ? (
+            <Link to={"account"} className="btn min-h-1 p-2 max-h-10">
+              {getUser}
+            </Link>
+          ) : (
+            <Link to={"login"} className="btn min-h-1 p-2 max-h-10">
+              <User />
+            </Link>
+          )}
           <Link to={"cart"} className=" btn indicator min-h-1 p-2 max-h-10">
             {cartList.length > 0 ? (
               <>
@@ -39,11 +46,12 @@ function App() {
       </header>
       <Routes>
         <Route path="login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Products />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="cart" element={<Cart />} />
         <Route path="products/:productID" element={<ProductCard />} />
+        <Route path="account" element={<UserAccount />} />
       </Routes>
     </div>
   );

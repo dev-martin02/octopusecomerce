@@ -44,12 +44,12 @@ export async function login(email: string, password: string) {
 
   const user = data.user;
   if (user.id) {
-    const userProfile = await fetchData(user.id);
+    const userProfile = await fetchUserData(user.id);
     return userProfile;
   }
 }
 
-async function fetchData(id: string) {
+async function fetchUserData(id: string) {
   const { data, error } = await supabase.from("users").select("*").eq("id", id);
 
   if (error) throw error;
