@@ -56,3 +56,42 @@ async function fetchUserData(id: string) {
 
   return data;
 }
+
+type UserObj = {
+  id: string;
+  name: string;
+  email: string;
+  zipcode: number | null;
+  city: string | null;
+  street: string | null;
+};
+
+// Define the function to accept a parameter of type UserObj
+export async function updateAccountInfo(editUserInfo: UserObj) {
+  // Check if `editUserInfo` contains valid data
+  if (!editUserInfo || !editUserInfo.id) {
+    console.error("User info is missing or invalid.");
+    return;
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .update({
+        name: editUserInfo.name,
+        email: editUserInfo.email,
+        street: editUserInfo.street,
+        zipcode: editUserInfo.zipcode,
+        city: editUserInfo.city,
+      })
+      .eq("id", editUserInfo.id); // Update by matching the user's ID
+
+    if (error) {
+      console.error("Error updating user info:", error);
+    } else {
+      console.log("User info updated successfully:", data);
+    }
+  } catch (error) {
+    console.error("Unexpected error:", error);
+  }
+}
