@@ -1,8 +1,39 @@
 import { X } from "lucide-react";
 import React from "react";
+import sendUserAddress from "../../api/nodeJsApi";
 
 type PurchaseForm = {
   setDisplayForm: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+type UserObj = {
+  id: string;
+  name: string;
+  email: string;
+  zipCode: number | null;
+  city: string | null;
+  street: string | null;
+};
+
+const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const formData = new FormData(e.currentTarget);
+  console.log("FormData obj", formData);
+
+  const userAddress: UserObj = {
+    id: "",
+    name: "",
+    email: "",
+    zipCode: 0,
+    city: "",
+    street: "",
+  };
+  for (const [key, value] of formData) {
+    //@ts-ignore
+    userAddress[key] = value;
+  }
+
+  sendUserAddress(userAddress);
 };
 
 export default function PurchaseForm({ setDisplayForm }: PurchaseForm) {
@@ -15,7 +46,7 @@ export default function PurchaseForm({ setDisplayForm }: PurchaseForm) {
         >
           <X />
         </button>
-        <form className="p-6 space-y-4">
+        <form onSubmit={handleForm} className="p-6 space-y-4">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
             Purchase Form
           </h2>
@@ -104,15 +135,15 @@ export default function PurchaseForm({ setDisplayForm }: PurchaseForm) {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label
-                htmlFor="zip"
+                htmlFor="zipCode"
                 className="block text-sm font-medium text-gray-700"
               >
                 ZIP Code
               </label>
               <input
                 type="text"
-                id="zip"
-                name="zip"
+                id="zipCode"
+                name="zipCode"
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 placeholder="12345"
               />
@@ -128,6 +159,23 @@ export default function PurchaseForm({ setDisplayForm }: PurchaseForm) {
                 type="text"
                 id="country"
                 name="country"
+                readOnly={true}
+                value={"United States"}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="United States"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="country"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Payment amount
+              </label>
+              <input
+                type="text"
+                id="paymentAmount"
+                name="paymentAmount"
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 placeholder="United States"
               />

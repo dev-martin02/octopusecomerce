@@ -1,6 +1,6 @@
-import { Pencil, User } from "lucide-react";
+import { Pencil, X } from "lucide-react";
 import { UseAppStore } from "../../store/productsStore";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { updateAccountInfo } from "../../api/superbaseApi";
 
 export default function UserAccount() {
@@ -178,12 +178,21 @@ export default function UserAccount() {
 
   return user.map(({ name, street, zipcode, email, city }) => (
     <div className="relative p-2 w-full">
-      <button
-        className="absolute right-3 p-2 bg-amber-400 hover:bg-amber-500 text-gray-900 rounded-md transition-all duration-200 shadow-md hover:shadow-lg group"
-        onClick={() => changeEditState(!editMode)}
-      >
-        <Pencil className="w-5 h-5 group-hover:scale-110 transition-transform" />
-      </button>
+      {editMode ? (
+        <button
+          className="absolute right-3 p-2 bg-red-400 hover:bg-red-500 text-gray-900 rounded-md transition-all duration-200 shadow-md hover:shadow-lg group"
+          onClick={() => changeEditState(!editMode)}
+        >
+          <X className="w-5 h-5 group-hover:scale-110 transition-transform" />
+        </button>
+      ) : (
+        <button
+          className="absolute right-3 p-2 bg-amber-400 hover:bg-amber-500 text-gray-900 rounded-md transition-all duration-200 shadow-md hover:shadow-lg group"
+          onClick={() => changeEditState(!editMode)}
+        >
+          <Pencil className="w-5 h-5 group-hover:scale-110 transition-transform" />
+        </button>
+      )}
 
       <h2 className=" text-2xl font-black">Account Information</h2>
       {editMode ? (

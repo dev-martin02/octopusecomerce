@@ -8,7 +8,7 @@ export default function Cart() {
   const [displayPurchaseForm, setDisplayPurchaseForm] = useState(false);
 
   const cartProducts = cartList.map(({ name, price, quantity, image_logo }) => (
-    <div className="border border-gray-200 rounded-lg shadow-md flex items-center w-full max-w-2xl mx-auto p-4 transition-shadow hover:shadow-lg">
+    <div className="border border-gray-50 bg-gray-100 rounded-lg shadow-md flex items-center w-full max-w-2xl mx-auto p-4 transition-shadow hover:shadow-lg">
       <div className="w-24 h-24 mr-6">
         <img
           src={image_logo || "/api/placeholder/96/96"}
@@ -86,7 +86,7 @@ export default function Cart() {
       {cartList.length === 0 ? (
         <h2> Not item is in the cart!</h2>
       ) : (
-        <div className="flex flex-col justify-center gap-2 items-center sm:flex-row sm:items-start">
+        <div className="flex flex-col justify-center gap-2 items-center sm:flex-row sm:items-start mt-2">
           <div className="w-11/12 flex flex-col gap-2 sm:w-96 ">
             {cartProducts}
           </div>
