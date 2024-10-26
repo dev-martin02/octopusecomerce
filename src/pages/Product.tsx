@@ -17,10 +17,11 @@ export default function Products() {
       .catch((e) => console.log(e))
       .finally(() => setFetchingProducts(false));
   }, []);
+
   const LoadingProducts = () => (
-    <div className="flex gap-1 border-2 border-gray-300 p-1 rounded">
-      <div className="bg-gray-400 w-40 h-40 animate-pulse"></div>
-      <div className="flex flex-col flex-grow gap-2">
+    <div className="border-2 border-gray-300 w-full rounded flex flex-col mt-4 sm:grid gap-2 p-2 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="bg-gray-400 h-52 sm:h-40 animate-pulse"></div>
+      <div className="flex flex-col w-full gap-3">
         <div className="bg-gray-400 h-10 w-full animate-pulse"></div>
         <div className="bg-gray-400 h-5 w-full animate-pulse"></div>
         <div className="bg-gray-400 w-32 h-10 rounded-sm animate-pulse"></div>
@@ -30,7 +31,7 @@ export default function Products() {
 
   return (
     <>
-      <section className="mt-4 grid gap-2 p-2 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+      <section className="mt-4 grid gap-2 p-2 grid-cols-2 lg:grid-cols-3 ">
         {fetchingProducts ? (
           Array.from({ length: 10 }).map((_, index) => (
             <LoadingProducts key={index} />

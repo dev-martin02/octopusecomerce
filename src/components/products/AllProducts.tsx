@@ -6,8 +6,11 @@ import { Link } from "react-router-dom";
 export function AllProducts() {
   const { productList } = UseAppStore();
 
-  return productList.map(({ name, image_logo, price, brand, id }) => (
-    <div className="border-gray-50 bg-gray-100 shadow-lg rounded-lg flex flex-col sm:flex-row gap-2 border-2  relative">
+  return productList.map(({ name, image_logo, price, brand, id }, index) => (
+    <div
+      key={index}
+      className="border-gray-50 bg-gray-100 md:w-96 lg:w-full shadow-lg rounded-lg flex flex-col sm:flex-row gap-2 border-2 relative"
+    >
       <figure className="w-full sm:w-40">
         <img
           src={image_logo}
